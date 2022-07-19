@@ -7,6 +7,7 @@ import {
 	useVideoConfig
 } from 'remotion';
 
+import video1 from './../input_data/footage/11.mp4';
 import video2 from './../input_data/footage/2.mp4';
 import video3 from './../input_data/footage/1.mp4';
 import video4 from './../input_data/footage/5.mp4';
@@ -23,27 +24,10 @@ export const Slide = ({titleText, titleColor}) => {
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
 
-
-	// Animate from 0 to 1 after 25 frames
-	const Slide2TranslationProgress = spring({
-		frame: frame - 360,
-		fps,
-		config: {
-			damping: 200
-		}
-	});
-	// Move the logo up by 150 pixels once the transition starts
-	const slide2Translation = interpolate(
-		Slide2TranslationProgress,
-		[0, 1],
-		[0, -1280]
-	);
-
-
 	// Fade out the animation at the end
 	const opacity = interpolate(
 		frame,
-		[durationInFrames - 10, durationInFrames],
+		[durationInFrames - (fps/4), durationInFrames],
 		[1, 0],
 		{
 			extrapolateLeft: 'clamp',
@@ -51,6 +35,7 @@ export const Slide = ({titleText, titleColor}) => {
 		}
 	);
 
+	let colors = [...config.color].map(x=>x.startsWith('#')?x:("#"+x))
 
 	// A <AbsoluteFill> is just a absolutely positioned <div>!
 	return (
@@ -59,7 +44,7 @@ export const Slide = ({titleText, titleColor}) => {
 				src={audio}
 			/>
 			<Sequence from={0} durationInFrames={260}>
-				<StartScene />
+				<StartScene video={video1} start_text={config.text.start_text} />
 			</Sequence>
 			<Sequence from={220} durationInFrames={170}>
 				<VideoSlide video={video2} slideX slideY={'start'} />
@@ -68,16 +53,27 @@ export const Slide = ({titleText, titleColor}) => {
 				<VideoSlide video={video3} slideX={'start'} />
 			</Sequence>
 			<Sequence from={240} durationInFrames={215}>
-				<MiddleScene />
+				<MiddleScene
+					mainText={config.text.middle_text[0].main}
+					secondaryText={config.text.middle_text[0].secondary}
+					textColor={colors[1]}
+					backgroundColor={colors[3]}
+				/>
 			</Sequence>
 			<Sequence from={355} durationInFrames={100}>
-				<MiddleText />
+				<MiddleText
+					product_id={config.text.middle_text[1].product_id}
+					quantity={config.text.middle_text[1].quantity}
+					textColor={colors[0]}
+					backgroundColor={colors[2]}
+				/>
 			</Sequence>
 			<Sequence from={455}>
-				<Video src={video4} />
-			</Sequence>
-			<Sequence from={455}>
-				<FinalScene />
+				<FinalScene
+					video={video4}
+					text={config.text.end_text}
+					backgroundColor={colors[3]}
+				/>
 			</Sequence>
 		</AbsoluteFill>
 	);

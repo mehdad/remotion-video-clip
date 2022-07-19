@@ -1,20 +1,22 @@
-import config from '../../input_data/config.json';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Video} from 'remotion';
-import video1 from '../../input_data/footage/11.mp4';
+import {AbsoluteFill, interpolate,  useCurrentFrame, Video} from 'remotion';
 
-export const FinalScene = () => {
+export const FinalScene = ({video,text,backgroundColor='black'}) => {
 	const frame = useCurrentFrame();
-	const {durationInFrames, fps} = useVideoConfig();
 
-	const textScale = interpolate(frame, [0,5], [0,1], {
+	const textScale = interpolate(frame, [0,5], [0.5,1], {
 		extrapolateLeft: "clamp",
 		extrapolateRight: "clamp",
 	});
 
 	return <AbsoluteFill>
 		<div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
-			<div style={{transform: `scale(${textScale}, ${textScale}) translateY(${100*(textScale)}px)`,position:'absolute',verticalAlign: 'middle',fontSize: 50,color:'white',background:'#142E54'}}>
-				{config.text.end_text}
+			<Video src={video} />
+			<div className={'text text-main'}
+					 style={{
+						 transform: `scale(${textScale}, ${textScale}) translateY(${100*(textScale)}px)`,
+						 fontSize: 50,
+						 background:backgroundColor}}>
+				{text}
 			</div>
 		</div>
 	</AbsoluteFill>

@@ -1,10 +1,7 @@
-import config from '../../input_data/config.json';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Video} from 'remotion';
-import video1 from '../../input_data/footage/11.mp4';
+import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 
-export const MiddleScene = () => {
+export const MiddleScene = ({mainText,secondaryText,textColor='#142E54',backgroundColor='white'}) => {
 	const frame = useCurrentFrame();
-	const {durationInFrames, fps} = useVideoConfig();
 	let textSize2 = interpolate(frame, [0,10], [0,70], {
 		extrapolateLeft: "clamp",
 		extrapolateRight: "clamp",
@@ -22,12 +19,17 @@ export const MiddleScene = () => {
 
 
 	return <AbsoluteFill>
-		<div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
-			<div style={{transform: `translateY(${textOffset}px)`, position:'absolute',verticalAlign: 'middle',fontSize: textSize2+textSize3,color:'white'}}>
-				{config.text.middle_text[0].main}
+		<div className={'main-container'}>
+			<div className={'text text-main'} style={{transform: `translateY(${textOffset}px)`,fontSize: textSize2+textSize3}}>
+				{mainText}
 			</div>
-			<div style={{transform: `translateY(${textOffset}px)`,position:'absolute',top:'55%',verticalAlign: 'middle',fontSize: (textSize2+textSize3)/2,color:'#142E54',background:'white'}}>
-				{config.text.middle_text[0].secondary}
+			<div className={'text text-secondary'}
+					 style={{
+						 transform: `translateY(${textOffset}px)`,top:'55%',
+						 fontSize: (textSize2+textSize3)/2,
+						 color:textColor,background:backgroundColor
+					 }}>
+				{secondaryText}
 			</div>
 		</div>
 	</AbsoluteFill>

@@ -1,8 +1,6 @@
-import config from '../../input_data/config.json';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Video} from 'remotion';
-import video1 from '../../input_data/footage/11.mp4';
 
-export const StartScene = () => {
+export const StartScene = ({video,start_text}) => {
 	const frame = useCurrentFrame();
 	const {height, durationInFrames, fps} = useVideoConfig();
 
@@ -34,11 +32,11 @@ export const StartScene = () => {
 	});
 
 	return <AbsoluteFill style={{transform: `translateY(${SliceUp}px)`}}>
-		<div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
-			<div className={'text-main'} style={{transform: `scale(1, ${textScale}) translateY(${200*(1-springValue)}px)`,position:'absolute',verticalAlign: 'middle',fontSize: 45,color:'white'}}>
-				{config.text.start_text}
+		<div className={'main-container'}>
+			<div className={'text-main text'} style={{transform: `scale(1, ${textScale}) translateY(${200*(1-springValue)}px)`,fontSize: 45}}>
+				{start_text}
 			</div>
-			<Video style={{width:'100%',height:'100%'}} src={video1} />
+			<Video style={{width:'100%',height:'100%'}} src={video} />
 		</div>
 	</AbsoluteFill>
 }
