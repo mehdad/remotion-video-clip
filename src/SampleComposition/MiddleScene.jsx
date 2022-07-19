@@ -1,6 +1,6 @@
 import config from '../../input_data/config.json';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Video} from 'remotion';
-import video1 from '../../input_data/footage/mixkit-blue-sea-and-forest-9841-medium.mp4';
+import video1 from '../../input_data/footage/11.mp4';
 
 export const MiddleScene = () => {
 	const frame = useCurrentFrame();

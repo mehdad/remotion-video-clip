@@ -12,7 +12,7 @@ import video3 from './../input_data/footage/1.mp4';
 import video4 from './../input_data/footage/5.mp4';
 import audio from './assets/music/Believe in Me 30s.webm';
 import config from '../input_data/config.json';
-import './SampleComposition/style.css';
+import './assets/css/style.css';
 import {StartScene} from './SampleComposition/StartScene';
 import {VideoSlide} from './SampleComposition/VideoSlide';
 import {MiddleScene} from './SampleComposition/MiddleScene';

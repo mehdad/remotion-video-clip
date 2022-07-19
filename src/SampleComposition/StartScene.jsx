@@ -1,6 +1,6 @@
 import config from '../../input_data/config.json';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Video} from 'remotion';
-import video1 from '../../input_data/footage/mixkit-blue-sea-and-forest-9841-medium.mp4';
+import video1 from '../../input_data/footage/11.mp4';
 
 export const StartScene = () => {
 	const frame = useCurrentFrame();
@@ -35,7 +35,7 @@ export const StartScene = () => {
 
 	return <AbsoluteFill style={{transform: `translateY(${SliceUp}px)`}}>
 		<div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
-			<div style={{transform: `scale(1, ${textScale}) translateY(${200*(1-springValue)}px)`,position:'absolute',verticalAlign: 'middle',fontSize: 45,color:'white'}}>
+			<div className={'text-main'} style={{transform: `scale(1, ${textScale}) translateY(${200*(1-springValue)}px)`,position:'absolute',verticalAlign: 'middle',fontSize: 45,color:'white'}}>
 				{config.text.start_text}
 			</div>
 			<Video style={{width:'100%',height:'100%'}} src={video1} />

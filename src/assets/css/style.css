@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Bodoni';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bodoni'), url('./../fonts/bodoni.woff') format('woff');
+}
+@font-face {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Avenir'), url('./../fonts/avenir_roman.woff') format('woff');
+}
+
+.text-main {
+    font-family: 'Bodoni', cursive;
+}
+.text-secondary {
+    font-family: 'Avenir', cursive;
+}
