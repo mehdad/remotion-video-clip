@@ -1,5 +1,5 @@
 import {Composition} from 'remotion';
-import {Slide} from './Slide';
+import {Slider} from './Slider';
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionVideo = () => {
@@ -7,15 +7,11 @@ export const RemotionVideo = () => {
 		<>
 			<Composition
 				id="slide1"
-				component={Slide}
+				component={Slider}
 				durationInFrames={900}
 				fps={30}
 				width={1280}
 				height={720}
-				defaultProps={{
-					titleText: 'Welcome to Remotion',
-					titleColor: 'black',
-				}}
 			/>
 		</>
 	);

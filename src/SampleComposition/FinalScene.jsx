@@ -10,7 +10,7 @@ export const FinalScene = ({video,text,backgroundColor='black'}) => {
 
 	return <AbsoluteFill>
 		<div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100%'}}>
-			<Video src={video} />
+			<Video src={video} volume={0} />
 			<div className={'text text-main'}
 					 style={{
 						 transform: `scale(${textScale}, ${textScale}) translateY(${100*(textScale)}px)`,

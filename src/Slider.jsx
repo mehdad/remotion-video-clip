@@ -11,7 +11,7 @@ import video1 from './../input_data/footage/11.mp4';
 import video2 from './../input_data/footage/2.mp4';
 import video3 from './../input_data/footage/1.mp4';
 import video4 from './../input_data/footage/5.mp4';
-import audio from './assets/music/Believe in Me 30s.webm';
+import audio from './assets/music/Believe in Me 30s.mp4';
 import config from '../input_data/config.json';
 import './assets/css/style.css';
 import {StartScene} from './SampleComposition/StartScene';
@@ -20,11 +20,10 @@ import {MiddleScene} from './SampleComposition/MiddleScene';
 import {MiddleText} from './SampleComposition/MiddleText';
 import {FinalScene} from './SampleComposition/FinalScene';
 
-export const Slide = ({titleText, titleColor}) => {
+export const Slider = () => {
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
 
-	// Fade out the animation at the end
 	const opacity = interpolate(
 		frame,
 		[durationInFrames - (fps/4), durationInFrames],
@@ -37,7 +36,6 @@ export const Slide = ({titleText, titleColor}) => {
 
 	let colors = [...config.color].map(x=>x.startsWith('#')?x:("#"+x))
 
-	// A <AbsoluteFill> is just a absolutely positioned <div>!
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white', opacity: opacity}}>
 			<Audio
